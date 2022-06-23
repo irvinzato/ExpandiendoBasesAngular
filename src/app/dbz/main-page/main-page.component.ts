@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DbzService } from './../services/dbz.service';
 import { Personaje } from '../interfaces/dbz.interface';
 
 @Component({
@@ -9,23 +10,18 @@ import { Personaje } from '../interfaces/dbz.interface';
 })
 export class MainPageComponent implements OnInit {
 
-  personajes: Personaje[] = [
-    {
-      nombre: 'Goku',
-      poder: 15000
-    },
-    {
-      nombre: 'Vegeta',
-      poder: 12000
-    }
-  ];
-
   nuevo: Personaje = {
     nombre: '',
     poder: 0
   }
 
-  constructor() { }
+  get personajes(): Personaje[] {
+    return this.dbzService.personajes;
+  }
+
+  constructor( private dbzService: DbzService ) {
+    // this.personajes = this.dbzService.personajes; Una forma de hacerlo pero puedo usar un "get()" para hacerlo mas interesante
+   }
 
   ngOnInit(): void {
   }
