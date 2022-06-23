@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Personaje } from '../interfaces/dbz.interface';
 
@@ -13,7 +13,8 @@ export class AgregarComponent implements OnInit {
     nombre: '',
     poder: 0
   }
-  @Input() personajesHijo: Personaje[] = [];
+  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -22,7 +23,7 @@ export class AgregarComponent implements OnInit {
   agregar() {
     if( this.nuevoPersonaje.nombre.trim().length === 0 ) { return; }
     console.log("hey los inputs tienen ", this.nuevoPersonaje);
-    this.personajesHijo.push(this.nuevoPersonaje);
+    this.onNuevoPersonaje.emit( this.nuevoPersonaje );
     this.nuevoPersonaje = {
       nombre: '',
       poder: 0

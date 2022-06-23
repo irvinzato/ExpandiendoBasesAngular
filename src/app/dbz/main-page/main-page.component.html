@@ -6,6 +6,7 @@
         <app-personajes [personajesHijo]="personajes"></app-personajes>
     </div>
     <div class="col">
-        <app-agregar [nuevoPersonaje]="nuevo" [personajesHijo]="personajes"></app-agregar>
+        <app-agregar [nuevoPersonaje]="nuevo"
+                     (onNuevoPersonaje)="agregarNuevoPersonaje( $event )"></app-agregar>
     </div>
 </div>
